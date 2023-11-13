@@ -49,7 +49,13 @@ router.post("/", [auth, admin], async (req, res) => {
       .send("The body type with the given ID does not exist");
   }
 
-  const model = new Model({
+  // see if name already exists
+  let model = await Model.findOne({ name: req.body.name });
+  if (model) {
+    return res.status(400).send("Model already registered.");
+  }
+
+  model = new Model({
     name,
     makeId: make._id,
     bodyTypeId: bodyType._id,

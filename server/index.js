@@ -2,23 +2,23 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-const dbConnect = require("./startup/dbConnect");
-
-const users = require("./routes/users.routes");
-const auth = require("./routes/auth.routes");
-const makes = require("./routes/makes.routes");
-const models = require("./routes/models.routes");
-const bts = require("./routes/bodyTypes.routes");
-
 const app = express();
-
-dbConnect();
 
 // Configure CORS options
 const corsOptions = {
   origin: ["http://localhost:3000"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
+
+const dbConnect = require("./startup/dbConnect");
+
+dbConnect();
+
+const users = require("./routes/users.routes");
+const auth = require("./routes/auth.routes");
+const makes = require("./routes/makes.routes");
+const models = require("./routes/models.routes");
+const bts = require("./routes/bodyTypes.routes");
 
 // Apply middlewares
 app.use(cors(corsOptions));
