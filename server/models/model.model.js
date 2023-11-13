@@ -14,13 +14,19 @@ const modelSchema = new mongoose.Schema({
     ref: "Make",
     required: true,
   },
+  bodyTypeId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "BodyType",
+    required: true,
+  },
 });
 
 const Model = mongoose.model("Model", modelSchema);
 
 const modelValidationSchema = Joi.object({
   name: Joi.string().min(1).max(255).required(),
-  makeId: Joi.string().hex().length(24),
+  makeId: Joi.string().hex().length(24).required(),
+  bodyTypeId: Joi.string().hex().length(24).required(),
 });
 
 exports.Model = Model;

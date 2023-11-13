@@ -7,7 +7,8 @@ const dbConnect = require("./startup/dbConnect");
 const users = require("./routes/users.routes");
 const auth = require("./routes/auth.routes");
 const makes = require("./routes/makes.routes");
-const model = require("./routes/models.routes");
+const models = require("./routes/models.routes");
+const bts = require("./routes/bodyTypes.routes");
 
 const app = express();
 
@@ -26,7 +27,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/auth", auth);
 app.use("/api/users", users);
 app.use("/api/makes", makes);
-app.use("/api/models", model);
+app.use("/api/models", models);
+app.use("/api/body-types", bts);
 
 app.listen(8080, () => {
   console.log("App is running on port 8080");

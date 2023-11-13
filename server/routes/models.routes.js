@@ -4,6 +4,7 @@ const auth = require("../middleware/auth.middleware");
 const admin = require("../middleware/admin.middleware");
 const { Model, ModelValidator } = require("../models/model.model");
 const { Make } = require("../models/make.model");
+const { BodyType } = require("../models/bodyType.model");
 
 // Get all models
 router.get("/", async (req, res) => {
@@ -27,19 +28,12 @@ router.get("/:id", async (req, res) => {
 
 // Create a new model
 router.post("/", [auth, admin], async (req, res) => {
-  // Validate object request, send 400(bad request) error if invalid
   const result = ModelValidator.validate(req.body);
   if (result.error) {
     return res.status(400).send(result.error.details[0].message);
   }
 
-  // See if model already exists
-  let model = await Model.findOne({ name: req.body.name });
-  if (model) {
-    return res.status(400).send("Model already exists.");
-  }
-
-  const { name, makeId } = req.body;
+  const { name, makeId, bodyTypeId } = req.body;
 
   // Check if the specified make exists
   const make = await Make.findById(makeId);
@@ -47,9 +41,18 @@ router.post("/", [auth, admin], async (req, res) => {
     return res.status(404).send("The make with the given ID does not exist");
   }
 
-  model = new Model({
+  // Check if the specified body type exists
+  const bodyType = await BodyType.findById(bodyTypeId);
+  if (!bodyType) {
+    return res
+      .status(404)
+      .send("The body type with the given ID does not exist");
+  }
+
+  const model = new Model({
     name,
     makeId: make._id,
+    bodyTypeId: bodyType._id,
   });
 
   await model.save();
@@ -65,7 +68,7 @@ router.put("/:id", [auth, admin], async (req, res) => {
 
   const model = await Model.findByIdAndUpdate(
     req.params.id,
-    { name: req.body.name },
+    { name: req.body.name, bodyTypeId: req.body.bodyTypeId },
     { new: true }
   );
 
