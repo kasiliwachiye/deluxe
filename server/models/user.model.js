@@ -46,6 +46,7 @@ const userValidationSchema = Joi.object({
   username: Joi.string().min(2).max(255).required(),
   email: Joi.string().min(5).max(255).email().required(),
   password: Joi.string().min(5).max(255).alphanum().required(),
+  isAdmin: Joi.boolean(),
 });
 
 exports.User = User;

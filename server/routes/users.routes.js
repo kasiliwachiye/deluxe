@@ -17,17 +17,18 @@ router.post("/", async (req, res) => {
     return res.status(400).send(error.details[0].message);
   }
 
-  // see if user already exists
+  // See if user already exists
   let user = await User.findOne({ email: req.body.email });
   if (user) {
     return res.status(400).send("User already registered.");
   }
 
-  // Create a new user object without
+  // Create a new user object
   user = new User({
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
+    isAdmin: req.body.isAdmin,
   });
 
   const salt = await bcrypt.genSalt(10);
@@ -42,6 +43,7 @@ router.post("/", async (req, res) => {
     _id: user._id,
     username: user.username,
     email: user.email,
+    isAdmin: user.isAdmin,
   });
 });
 
