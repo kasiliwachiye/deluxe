@@ -33,7 +33,7 @@ router.post("/", [auth, admin], async (req, res) => {
     return res.status(400).send(result.error.details[0].message);
   }
 
-  const { name, makeId, bodyTypeId } = req.body;
+  const { name, makeId, bodyTypeId, price, availability } = req.body;
 
   // Check if the specified make exists
   const make = await Make.findById(makeId);
@@ -59,6 +59,8 @@ router.post("/", [auth, admin], async (req, res) => {
     name,
     makeId: make._id,
     bodyTypeId: bodyType._id,
+    price,
+    availability,
   });
 
   await model.save();
@@ -74,7 +76,12 @@ router.put("/:id", [auth, admin], async (req, res) => {
 
   const model = await Model.findByIdAndUpdate(
     req.params.id,
-    { name: req.body.name, bodyTypeId: req.body.bodyTypeId },
+    {
+      name: req.body.name,
+      bodyTypeId: req.body.bodyTypeId,
+      price: req.body.price,
+      availability: req.body.availability,
+    },
     { new: true }
   );
 
