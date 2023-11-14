@@ -1,7 +1,7 @@
 export default function Page() {
   return (
     <section>
-      <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
+      <div className="min-h-screen lg:grid lg:grid-cols-12">
         <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
           <img
             alt="Night"
@@ -40,7 +40,7 @@ export default function Page() {
           <div className="max-w-xl lg:max-w-3xl">
             <div className="relative -mt-16 block lg:hidden">
               <a
-                className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white text-blue-600 sm:h-20 sm:w-20"
+                className="inline-flex h-16 w-16 items-center justify-center rounded-full sm:h-20 sm:w-20"
                 href="/"
               >
                 <span className="sr-only">Home</span>
@@ -57,11 +57,11 @@ export default function Page() {
                 </svg>
               </a>
 
-              <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-                Welcome to Squid 🦑
+              <h1 className="mt-2 text-2xl font-bold sm:text-3xl md:text-4xl">
+                Deluxo
               </h1>
 
-              <p className="mt-4 leading-relaxed text-gray-500">
+              <p className="mt-4 leading-relaxed">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 Eligendi nam dolorum aliquam, quibusdam aperiam voluptatum.
               </p>
@@ -76,7 +76,7 @@ export default function Page() {
                   type="text"
                   id="Username"
                   name="username"
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -87,7 +87,7 @@ export default function Page() {
                   type="email"
                   id="Email"
                   name="email"
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -98,7 +98,7 @@ export default function Page() {
                   type="password"
                   id="Password"
                   name="password"
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                 />
               </div>
               <div className="col-span-6 sm:col-span-3">
@@ -112,7 +112,7 @@ export default function Page() {
                   type="password"
                   id="PasswordConfirmation"
                   name="password_confirmation"
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                 />
               </div>
               <div className="col-span-6">
@@ -123,13 +123,13 @@ export default function Page() {
                     name="marketing_accept"
                     className="checkbox"
                   />
-                  <span className="text-sm text-gray-700">
+                  <span className="text-sm">
                     By creating an account, you agree to our{" "}
-                    <a href="#" className="text-gray-700 underline">
+                    <a href="#" className="underline">
                       terms and conditions
                     </a>{" "}
                     and{" "}
-                    <a href="#" className="text-gray-700 underline">
+                    <a href="#" className="underline">
                       privacy policy
                     </a>
                     .
@@ -137,13 +137,13 @@ export default function Page() {
                 </label>
               </div>
 
-              <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                <button className="btn btn-outline">Create an account</button>
+              <div className="col-span-6 sm:col-span-3">
+                <button className="btn btn-outline w-full">Create an account</button>
               </div>
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                <p className="mt-4 text-sm text-gray-500 sm:mt-0">
+                <p className="mt-2 text-sm sm:mt-0">
                   Already have an account?{" "}
-                  <a href="/models" className="text-gray-700 underline">
+                  <a href="/models" className="underline">
                     Log in
                   </a>
                   .
